@@ -11,37 +11,47 @@ int main()
  const char *Period = "/sys/class/pwm/pwmchip0/pwm-0:0/period";
  const char *Enable = "/sys/class/pwm/pwmchip0/pwm-0:0/enable";
  const char *Duty_cycle = "/sys/class/pwm/pwmchip0/pwm-0:0/duty_cycle";
- 
- if((PWM = fopen(Export, "w")) != NULL)
+ // Habilita el uso de pwm0 - A
+ if((PWM = fopen(Export, "r+")) != NULL)
  {
   fwrite("0", sizeof(char), 1, PWM);
  	fclose(PWM);
  }
- if((PWM = fopen(Period, "w")) != NULL)
+// Espera a que se cree el directorio "/sys/class/pwm/pwmchip0/pwm-0:0/"
+ while((PWM = fopen(Period, "r+")) == NULL)
+	{
+		usleep(1);
+	}
+	
+// Cambia el periodo de 0 a 1 ms
+ if((PWM = fopen(Period, "r+")) != NULL)
  {
- 	fwrite("1000000", sizeof(char), 1, PWM);
+ 	fwrite("1000000", sizeof(char), 7, PWM);
   fclose(PWM);
  }
- if((PWM = fopen(Enable, "w")) != NULL)
+ // Enciende el puerto pwm
+ if((PWM = fopen(Enable, "r+")) != NULL)
  {
  	fwrite("1", sizeof(char), 1, PWM);
  	fclose(PWM);
  }
-int a = 1;
- while(a > 0)
+// Cambia el ciclo de trabajo entre 10% y 99% con espera de 1 s entre ellos.
+while(1)
+{
+ 
+ if((PWM = fopen(Duty_cycle, "r+")) != NULL)
  {
-    if((PWM = fopen(Duty_cycle, "w")) != NULL)
-	{
-        fwrite("500", sizeof(char), 1, PWM);
+	fwrite("100000", sizeof(char), 6, PWM);
 	fclose(PWM);
-	}
-  	usleep(1000000);
-    if((PWM = fopen(Duty_cycle, "w")) != NULL)
-      	{
-        fwrite("1000000", sizeof(char), 1, PWM);
-        fclose(PWM);
-      	}
-	usleep(1000000);
- }   
+ }
+usleep(1000000);
+ if((PWM = fopen(Duty_cycle, "r+")) != NULL)
+ {
+	fwrite("990000", sizeof(char), 6, PWM);
+	fclose(PWM);
+ }
+usleep(1000000);
+}
+   
 return(0);
 }
