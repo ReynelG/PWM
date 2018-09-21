@@ -27,28 +27,21 @@ int main()
  	fwrite("1", sizeof(char), 1, PWM);
  	fclose(PWM);
  }
- while(1)
+int a = 1;
+ while(a > 0)
  {
-  for(int i = 0; i < 10000; i++)
-  {
-   char *j = std::to_string(i); 
-      if((PWM = fopen(Duty_cycle, "r+")) != NULL)
-      {
-        fwrite(j, sizeof(char), 1, PWM);
- 		    fclose(PWM);
- 	    }
-  }
-  usleep(100);
-   for(int i = 10000; i > 0; i--)
-  {
-    char *j = std::to_string(i); 
-      if((PWM = fopen(Duty_cycle, "r+")) != NULL)
-      {
-        fwrite(j, sizeof(char), 1, PWM);
- 		    fclose(PWM);
- 	    }
-  }
-  usleep(100);
+    if((PWM = fopen(Duty_cycle, "r+")) != NULL)
+	{
+        fwrite("500", sizeof(char), 1, PWM);
+	fclose(PWM);
+	}
+  	usleep(1000);
+    if((PWM = fopen(Duty_cycle, "r+")) != NULL)
+      	{
+        fwrite("10000", sizeof(char), 1, PWM);
+        fclose(PWM);
+      	}
+	usleep(1000);
  }   
 return(0);
 }
