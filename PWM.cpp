@@ -12,17 +12,17 @@ int main()
  const char *Enable = "/sys/class/pwm/pwmchip0/pwm-0:0/enable";
  const char *Duty_cycle = "/sys/class/pwm/pwmchip0/pwm-0:0/duty_cycle";
  
- if((PWM = fopen(Export, "r+")) != NULL)
+ if((PWM = fopen(Export, "w")) != NULL)
  {
   fwrite("0", sizeof(char), 1, PWM);
  	fclose(PWM);
  }
- if((PWM = fopen(Period, "r+")) != NULL)
+ if((PWM = fopen(Period, "w")) != NULL)
  {
  	fwrite("1000000", sizeof(char), 1, PWM);
   fclose(PWM);
  }
- if((PWM = fopen(Enable, "r+")) != NULL)
+ if((PWM = fopen(Enable, "w")) != NULL)
  {
  	fwrite("1", sizeof(char), 1, PWM);
  	fclose(PWM);
@@ -30,18 +30,18 @@ int main()
 int a = 1;
  while(a > 0)
  {
-    if((PWM = fopen(Duty_cycle, "r+")) != NULL)
+    if((PWM = fopen(Duty_cycle, "w")) != NULL)
 	{
         fwrite("500", sizeof(char), 1, PWM);
 	fclose(PWM);
 	}
-  	usleep(1000);
-    if((PWM = fopen(Duty_cycle, "r+")) != NULL)
+  	usleep(1000000);
+    if((PWM = fopen(Duty_cycle, "w")) != NULL)
       	{
         fwrite("1000000", sizeof(char), 1, PWM);
         fclose(PWM);
       	}
-	usleep(1000);
+	usleep(1000000);
  }   
 return(0);
 }
