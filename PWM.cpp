@@ -19,7 +19,7 @@ int main()
  }
  if((PWM = fopen(Period, "r+")) != NULL)
  {
- 	fwrite("10000", sizeof(char), 1, PWM);
+ 	fwrite("1000000", sizeof(char), 1, PWM);
   fclose(PWM);
  }
  if((PWM = fopen(Enable, "r+")) != NULL)
@@ -38,7 +38,7 @@ int a = 1;
   	usleep(1000);
     if((PWM = fopen(Duty_cycle, "r+")) != NULL)
       	{
-        fwrite("10000", sizeof(char), 1, PWM);
+        fwrite("1000000", sizeof(char), 1, PWM);
         fclose(PWM);
       	}
 	usleep(1000);
