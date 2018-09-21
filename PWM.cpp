@@ -31,18 +31,20 @@ int main()
  {
   for(int i = 0; i < 10000; i++)
   {
+   char *j = std::to_string(i); 
       if((PWM = fopen(Duty_cycle, "r+")) != NULL)
       {
-        fwrite(std::to_string(i), sizeof(char), 1, PWM);
+        fwrite(j, sizeof(char), 1, PWM);
  		    fclose(PWM);
  	    }
   }
   usleep(100);
    for(int i = 10000; i > 0; i--)
   {
+    char *j = std::to_string(i); 
       if((PWM = fopen(Duty_cycle, "r+")) != NULL)
       {
-        fwrite(std::to_string(i), sizeof(char), 1, PWM);
+        fwrite(j, sizeof(char), 1, PWM);
  		    fclose(PWM);
  	    }
   }
