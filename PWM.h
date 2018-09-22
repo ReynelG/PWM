@@ -41,9 +41,10 @@ class Backlight{
 	char Duty[7];
 	public: 
 	Backlight(char Percent[3]){
-		Duty = Percent||"0000";
+  		strcpy (Duty,Percent);
+  		strcat (Duty,"0000");
 	}
 	PWM Brightness;
-	Brightness.PWM("1000000",Percent);
+	Brightness.PWM("1000000",Duty);
 	
 };
