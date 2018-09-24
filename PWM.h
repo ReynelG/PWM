@@ -20,7 +20,7 @@ class PWM {
 		FILE * PWM_ = NULL;
 		if((PWM_ = fopen(Export_dir, "w")) != NULL)
 		{
-		fwrite("0", sizeof(char), 1, PWM);
+		fwrite("0", sizeof(char), 1, PWM_);
 		fclose(PWM_);
 		}
 		while((PWM_ = fopen(Period_dir, "w")) == NULL)
