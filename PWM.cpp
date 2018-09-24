@@ -9,6 +9,7 @@ int main(){
 	Percent[4] = "0";
 	Percent[5] = "0";
 	Percent[6] = "0";
+	cout<<Percent;
 	PWM Brightness("1000000",Percent);
 	Brightness.run();
 	return(0);
