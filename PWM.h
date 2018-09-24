@@ -23,7 +23,7 @@ class PWM {
 		fwrite("0", sizeof(char), 1, PWM);
 		fclose(PWM_);
 		}
-		while((PWM_ = fopen(Period, "w")) == NULL)
+		while((PWM_ = fopen(Period_dir, "w")) == NULL)
 		{
 			usleep(1);
 		}
