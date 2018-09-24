@@ -1,14 +1,13 @@
 #include <iostream>
+#include <string.h>
 #include "PWM.h"
+
  
 int main(){
 	// Program for brightness
-	char Percent[7];
+	char* Percent;
 	cin>>Percent;
-	Percent[3] = "0";
-	Percent[4] = "0";
-	Percent[5] = "0";
-	Percent[6] = "0";
+	strcat(Percent,"0000")
 	cout<<Percent;
 	PWM Brightness("1000000",Percent);
 	Brightness.run();
