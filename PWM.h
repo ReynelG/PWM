@@ -28,7 +28,8 @@ class PWM {
 			usleep(1);
 		}
 		
-	}; // Default value
+	};
+	// Change value, nanoseconds
 	PWM(std::string p, std::string dc): Period(p),Duty_Cycle(dc){
 		FILE * PWM_ = NULL;
 		if((PWM_ = fopen(Export_dir, "w")) != NULL)
@@ -41,7 +42,7 @@ class PWM {
 			usleep(1);
 		}
 		
-	}; // Change value, nanoseconds
+	}; 
 	void run(){
 		FILE * PWM_ = NULL;
 		if((PWM_ = fopen(Period_dir, "w")) != NULL)
