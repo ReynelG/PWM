@@ -13,8 +13,8 @@ using namespace std;
 
 
 class PWM {
-	char* Period;
-	char* Duty_Cycle;
+	char* Period = new char [7];
+	char* Duty_Cycle = new char[7];
 	
 	public:
 	// Default values, 50% duty cycle
@@ -64,5 +64,7 @@ class PWM {
 		}
 		
 	}
+	delete[] Period;
+	delete[] Duty_Cycle;
 };
 #endif
