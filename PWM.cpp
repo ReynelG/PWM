@@ -1,15 +1,15 @@
 #include <iostream>
-#include <string>
 #include "PWM.h"
  
-using namespace std;
- 
-int main()
-{
+int main(){
 	// Program for brightness
-	std::string Percent;
+	char Percent[7];
 	cin>>Percent;
-	Percent.append("0000");
+	Percent[3] = "0";
+	Percent[4] = "0";
+	Percent[5] = "0";
+	Percent[6] = "0";
 	PWM Brightness("1000000",Percent);
-	Brightness.run();	
+	Brightness.run();
+	return(0);
 }
