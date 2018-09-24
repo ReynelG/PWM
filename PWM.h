@@ -9,6 +9,7 @@
 #define En_dir "/sys/class/pwm/pwmchip0/pwm-0:0/enable"
 #define DC_dir "/sys/class/pwm/pwmchip0/pwm-0:0/duty_cycle"
 
+using namespace std;
 
 
 class PWM {
