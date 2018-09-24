@@ -30,7 +30,7 @@ class PWM {
 			usleep(1);
 		}
 		
-	};
+	}
 	// Change value, nanoseconds
 	PWM(char* p, char* dc): Period(p),Duty_Cycle(dc){
 		FILE * PWM_ = NULL;
@@ -44,7 +44,7 @@ class PWM {
 			usleep(1);
 		}
 		
-	}; 
+	} 
 	void run(){
 		FILE * PWM_ = NULL;
 		if((PWM_ = fopen(Period_dir, "w")) != NULL)
@@ -63,5 +63,6 @@ class PWM {
 			fclose(PWM_);
 		}
 		
-	};
+	}
+};
 #endif
