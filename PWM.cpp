@@ -2,9 +2,12 @@
 #include <string.h>
 #include "PWM.h"
 
- 
+#define Export_dir "/sys/class/pwm/pwmchip0/export"
+#define Period_dir "/sys/class/pwm/pwmchip0/pwm-0:0/period"
+#define En_dir "/sys/class/pwm/pwmchip0/pwm-0:0/enable"
+#define DC_dir "/sys/class/pwm/pwmchip0/pwm-0:0/duty_cycle"
 
-PWM::PWM(std::string p, std::string dc):Period(p),Duty_Cycle(dc){
+PWM::PWM(std::string p, std::string dc, std::string port, std::string ch):Period(p),Duty_Cycle(dc),Port(port),Channel(ch){
 	FILE * PWM_ = NULL;
 	if((PWM_ = fopen(Export_dir, "w")) != NULL)
 	{
