@@ -3,6 +3,8 @@
 
 #include <stdio.h>
 #include <unistd.h>
+#include <string>
+#include <cstring>
 
 #define Export_dir "/sys/class/pwm/pwmchip0/export"
 #define Period_dir "/sys/class/pwm/pwmchip0/pwm-0:0/period"
@@ -18,7 +20,7 @@ class PWM {
 	
 	public:
 	// Default values, 50% duty cycle
-	PWM(): Period("1000000"),DutyCycle("500000"){
+	PWM(): Period("1000000"),Duty_Cycle("500000"){
 		FILE * PWM_ = NULL;
 		if((PWM_ = fopen(Export_dir, "w")) != NULL)
 		{
