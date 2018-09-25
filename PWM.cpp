@@ -42,6 +42,3 @@ void PWM::run(){
 	delete[] P;
 	delete[] DC;
 }
-// Default Value
-PWM init("1000000","500000");
-init.run();
