@@ -5,9 +5,9 @@
  
 int main(){
 	// Program for brightness
-	char* Percent;
+	std::str Percent;
 	cin>>Percent;
-	strcat(Percent,"0000");
+	Percent = Percent + "0000";
 	cout<<Percent;
 	PWM Brightness("1000000",Percent);
 	Brightness.run();
