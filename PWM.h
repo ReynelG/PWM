@@ -13,14 +13,12 @@ using namespace std;
 
 
 class PWM {
-	char* Period = new char [8];
-	char* Duty_Cycle = new char[8];
+	std::string Period;
+	std::string Duty_Cycle;
 	
 	public:
 	// Default values, 50% duty cycle
-	PWM(){
-		strcpy(Period,"1000000");
-		strcpy(Duty_Cycle,"500000");
+	PWM(): Period("1000000"),DutyCycle("500000"){
 		FILE * PWM_ = NULL;
 		if((PWM_ = fopen(Export_dir, "w")) != NULL)
 		{
@@ -34,9 +32,7 @@ class PWM {
 		
 	}
 	// Change value, nanoseconds
-	PWM(std::string p, std::string dc){
-		strcpy(Period,p);
-		strcpy(Duty_Cycle,dc);
+	PWM(std::string p, std::string dc):Period(p),Duty_Cycle(dc){
 		FILE * PWM_ = NULL;
 		if((PWM_ = fopen(Export_dir, "w")) != NULL)
 		{
@@ -50,10 +46,16 @@ class PWM {
 		
 	} 
 	void run(){
+		char * P = new char [Period.length()+1];
+		std::strcpy (P, Period.c_str());
+		char * DC = new char [Duty_Cycle.length()+1];
+		std::strcpy (DC, Duty_Cycle.c_str());
+		
 		FILE * PWM_ = NULL;
+		
 		if((PWM_ = fopen(Period_dir, "w")) != NULL)
 		{
-			fwrite(Period, sizeof(char), 7, PWM_);
+			fwrite(P, sizeof(char), Period.length(), PWM_);
 			fclose(PWM_);
 		}
 		if((PWM_ = fopen(En_dir, "w")) != NULL)
@@ -63,12 +65,11 @@ class PWM {
 		}
 		if((PWM_ = fopen(DC_dir, "w")) != NULL)
 		{
-			fwrite(Duty_Cycle, sizeof(char), 7, PWM_);
+			fwrite(DC, sizeof(char), 7, PWM_);
 			fclose(PWM_);
 		}
-		
+		delete[] P;
+		delete[] DC;
 	}
-	delete[] Period;
-	delete[] Duty_Cycle;
 };
 #endif
