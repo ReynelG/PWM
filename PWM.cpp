@@ -15,7 +15,8 @@ int main(){
 		{
 			usleep(1);
 		}
-	PWM::run(){
+	}
+	void PWM::run(){
 		char * P = new char [Period.length()+1];
 		std::strcpy (P, Period.c_str());
 		char * DC = new char [Duty_Cycle.length()+1];
@@ -46,7 +47,7 @@ int main(){
 	init.run();
 	
 	// Program for brightness
-	std::str Percent;
+	std::string Percent;
 	cin>>Percent;
 	Percent = Percent + "0000";
 	cout<<Percent;
