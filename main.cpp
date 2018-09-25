@@ -1,10 +1,6 @@
 #include <iostream>
 
 int main(){
-	// Default Value
-	PWM init("1000000","500000");
-	init.run();
-	
 	// Program for brightness
 	std::string Percent;
 	cin>>Percent;
