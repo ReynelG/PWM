@@ -13,12 +13,14 @@ using namespace std;
 
 
 class PWM {
-	char* Period = new char [7];
-	char* Duty_Cycle = new char[7];
+	char* Period = new char [8];
+	char* Duty_Cycle = new char[8];
 	
 	public:
 	// Default values, 50% duty cycle
-	PWM():Period("1000000"),Duty_Cycle("500000"){
+	PWM(){
+		strcpy(Period,"1000000");
+		strcpy(Duty_Cycle,"500000");
 		FILE * PWM_ = NULL;
 		if((PWM_ = fopen(Export_dir, "w")) != NULL)
 		{
@@ -32,7 +34,9 @@ class PWM {
 		
 	}
 	// Change value, nanoseconds
-	PWM(char* p, char* dc): Period(p),Duty_Cycle(dc){
+	PWM(std::string p, std::string dc){
+		strcpy(Period,p);
+		strcpy(Duty_Cycle,dc);
 		FILE * PWM_ = NULL;
 		if((PWM_ = fopen(Export_dir, "w")) != NULL)
 		{
