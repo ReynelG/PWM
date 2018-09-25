@@ -17,11 +17,11 @@ using namespace std;
 
 class PWM {
 	private:
-	std::string Period;		//PWM period, nanoseconds
-	std::string Duty_Cycle;		//PWM Duty cycle, nanoseconds
+		std::string Period;		//PWM period, nanoseconds
+		std::string Duty_Cycle;		//PWM Duty cycle, nanoseconds
 	
 	public:
-	PWM(std::string, std::string);	//Constructor, creates the directories.
-	void run();			//Starts
+		PWM(std::string, std::string);	//Constructor, creates the directories.
+		void run();			//Starts
 	};
 #endif
