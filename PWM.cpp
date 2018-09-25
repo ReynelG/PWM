@@ -3,7 +3,7 @@
 #include "PWM.h"
 
  
-int main(){
+
 	PWM::PWM(std::string p, std::string dc):Period(p),Duty_Cycle(dc){
 		FILE * PWM_ = NULL;
 		if((PWM_ = fopen(Export_dir, "w")) != NULL)
@@ -42,6 +42,7 @@ int main(){
 		delete[] P;
 		delete[] DC;
 	}
+int main(){
 	// Default Value
 	PWM init("1000000","500000");
 	init.run();
