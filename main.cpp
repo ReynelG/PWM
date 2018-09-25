@@ -1,4 +1,5 @@
 #include <iostream>
+#include "PWM.h"
 
 int main(){
 	// Program for brightness
