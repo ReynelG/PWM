@@ -14,16 +14,16 @@ PWM::PWM( std::string port, std::string ch):Port(port),Channel(ch){
 	if(PWM_ == -1)						// If it doesn't, create directories for selected channel.
 	{
 		// Export creates directories for chosen port and channel
-		std::string Export = "/sys/class/pwm/pwmchip"+Port+"/export"; 
-		char * Export_dir = new char [Export.length()+1];
+		std::string Export = "/sys/class/pwm/pwmchip"+Port+"/export"; // Export directory for selected port
+		char * Export_dir = new char [Export.length()+1];	// Casting of literal string to char*
 		std::strcpy (Export_dir, Export.c_str());
-		char * CH = new char[Channel.length()+1];
+		char * CH = new char[Channel.length()+1];		// Creates Char* to choose channel. 0 and 1 available
 		std::strcpy (CH, Channel.c_str());
 		
 		int PWM_ = open(Export_dir,O_WRONLY);
 		if(PWM_ != -1)
 		{
-			write(PWM_, CH, sizeof(char));
+			write(PWM_, CH, sizeof(char));			// Writes value to choose channel.
 			close(PWM_);
 		}
 		delete[] Export_dir;
