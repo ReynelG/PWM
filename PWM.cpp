@@ -17,10 +17,6 @@ PWM::PWM(std::string p, std::string dc, std::string port, std::string ch):Period
 	}
 	delete[] Export_dir;
 	delete[] CH;
-}
-void PWM::run(){
-	
-	FILE * PWM_ = NULL;
 	
 	std::string dir = "/sys/class/pwm/pwmchip"+Port+"/pwm-"+Port+":"+Channel+"/period";
 	char * Period_dir = new char [dir.length()+1];
@@ -28,12 +24,18 @@ void PWM::run(){
 	while((PWM_ = fopen(Period_dir, "r+")) == NULL)
 	{
 		usleep(1);
+		fclose(PWM_);
 	}
+}
+void PWM::run(){
 	
+	FILE * PWM_ = NULL;
+	
+	std::string dir = "/sys/class/pwm/pwmchip"+Port+"/pwm-"+Port+":"+Channel+"/period";
+	char * Period_dir = new char [dir.length()+1];
+	std::strcpy (Period_dir, dir.c_str());		
 	char * P = new char [Period.length()+1];
 	std::strcpy (P, Period.c_str());
-	char * DC = new char [Duty_Cycle.length()+1];
-	std::strcpy (DC, Duty_Cycle.c_str());	
 	if((PWM_ = fopen(Period_dir, "w")) != NULL)
 	{
 		fwrite(P, sizeof(char), Period.length(), PWM_);
@@ -52,9 +54,12 @@ void PWM::run(){
 	}
 	delete[] En_dir;
 	
+		
 	dir = "/sys/class/pwm/pwmchip"+Port+"/pwm-"+Port+":"+Channel+"/duty_cycle";
 	char * DC_dir = new char [dir.length()+1];
 	std::strcpy (DC_dir, dir.c_str());
+	char * DC = new char [Duty_Cycle.length()+1];
+	std::strcpy (DC, Duty_Cycle.c_str());
 	if((PWM_ = fopen(DC_dir, "w")) != NULL)
 	{
 		fwrite(DC, sizeof(char), 7, PWM_);
