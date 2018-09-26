@@ -42,7 +42,9 @@ void PWM::run(){
 	std::strcpy (P, Period.c_str());
 	if((PWM_ = fopen(Period_dir, "w")) != NULL)
 	{
-		fwrite(P, sizeof(char), 7, PWM_);
+		while((fwrite(P, sizeof(char), Period.length(), PWM_)) != Period.length())
+		{
+		};
 		fclose(PWM_);
 	}
 	delete[] Period_dir;	
@@ -66,7 +68,7 @@ void PWM::run(){
 	std::strcpy (DC, Duty_Cycle.c_str());
 	if((PWM_ = fopen(DC_dir, "w")) != NULL)
 	{
-		fwrite(DC, sizeof(char), 7, PWM_);
+		fwrite(DC, sizeof(char), Duty_Cycle.length(), PWM_);
 		fclose(PWM_);
 	}
 	delete[] DC_dir;
