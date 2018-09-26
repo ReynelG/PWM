@@ -4,7 +4,7 @@
 
 // Defines constructor, Sets directories.
 // Ports available: 0,2,4. Channels available: 0,1. (6 total).
-PWM::PWM(std::string p, std::string dc, std::string port, std::string ch):Period(p),Duty_Cycle(dc),Port(port),Channel(ch){
+PWM::PWM( std::string port, std::string ch):Port(port),Channel(ch){
 	
 	// FILE * PWM_ = NULL;
 	std::string dir = "/sys/class/pwm/pwmchip"+Port+"/pwm-"+Port+":"+Channel+"/period";
@@ -35,10 +35,10 @@ PWM::PWM(std::string p, std::string dc, std::string port, std::string ch):Period
 	}
 	delete[] Period_dir;
 }
-void PWM::run(){
+void PWM::run(std::string p, std::string dc){
 	
-	// FILE * PWM_ = NULL;
-	
+	Period =p;
+	Duty_Cycle = dc;
 	std::string dir = "/sys/class/pwm/pwmchip"+Port+"/pwm-"+Port+":"+Channel+"/period";
 	char * Period_dir = new char [dir.length()+1];
 	std::strcpy (Period_dir, dir.c_str());		
