@@ -26,6 +26,7 @@ PWM::PWM(std::string p, std::string dc, std::string port, std::string ch):Period
 		usleep(1);
 		fclose(PWM_);
 	}
+	delete[] Period_dir;
 }
 void PWM::run(){
 	
