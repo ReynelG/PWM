@@ -47,7 +47,7 @@ void PWM::run(){
 	std::strcpy (P, Period.c_str());
 	while(PWM_ == -1)
 	{
-		usleep(1);
+		PWM_ = open(Period_dir,O_WRONLY);
 	}
 	if(PWM_ != -1)
 	{
