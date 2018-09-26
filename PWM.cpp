@@ -7,13 +7,13 @@
 PWM::PWM(std::string p, std::string dc, std::string port, std::string ch):Period(p),Duty_Cycle(dc),Port(port),Channel(ch){
 	
 	FILE * PWM_ = NULL;
-	std::string dir = "/sys/class/pwm/pwmchip"+Port+"/pwm-"+Port+":"+Channel+"/period";
+	/*std::string dir = "/sys/class/pwm/pwmchip"+Port+"/pwm-"+Port+":"+Channel+"/period";
 	char * Period_dir = new char [dir.length()+1];
 	std::strcpy (Period_dir, dir.c_str());
 	while((PWM_ = fopen(Period_dir, "w")) == NULL)
 	{
 		cout<<(PWM_ = fopen(Period_dir, "w"));
-		fclose(PWM_);
+		fclose(PWM_); */
 		// Export creates directories for chosen port and channel
 		std::string Export = "/sys/class/pwm/pwmchip"+Port+"/export"; 
 		char * Export_dir = new char [Export.length()+1];
@@ -27,8 +27,8 @@ PWM::PWM(std::string p, std::string dc, std::string port, std::string ch):Period
 		}
 		delete[] Export_dir;
 		delete[] CH;
-	}
-	delete[] Period_dir;
+	/* }
+	delete[] Period_dir;*/
 }
 void PWM::run(){
 	
