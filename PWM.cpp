@@ -38,6 +38,7 @@ void PWM::run(){
 	{
 		usleep(1);
 	}
+	usleep(100);
 	char * P = new char [Period.length()+1];
 	std::strcpy (P, Period.c_str());
 	if((PWM_ = fopen(Period_dir, "w")) != NULL)
