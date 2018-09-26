@@ -45,6 +45,10 @@ void PWM::run(){
 	int PWM_ = open(Period_dir,O_WRONLY);
 	char * P = new char [Period.length()+1];
 	std::strcpy (P, Period.c_str());
+	while(PWM_ == -1)
+	{
+		usleep(1);
+	}
 	if(PWM_ != -1)
 	{
 		write(PWM_, P, Period.length(),);
