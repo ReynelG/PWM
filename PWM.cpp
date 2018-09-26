@@ -1,6 +1,8 @@
 #include <string.h>
 #include "PWM.h"
 
+// Defines constructor, Sets directories.
+// Ports available: 0,2,4. Channels available: 0,1. (6 total).
 PWM::PWM(std::string p, std::string dc, std::string port, std::string ch):Period(p),Duty_Cycle(dc),Port(port),Channel(ch){
 	
 	FILE * PWM_ = NULL;
@@ -21,11 +23,12 @@ PWM::PWM(std::string p, std::string dc, std::string port, std::string ch):Period
 	std::string dir = "/sys/class/pwm/pwmchip"+Port+"/pwm-"+Port+":"+Channel+"/period";
 	char * Period_dir = new char [dir.length()+1];
 	std::strcpy (Period_dir, dir.c_str());	
-	while((PWM_ = fopen(Period_dir, "r+")) == NULL)
+	PWM_ = fopen(Period_dir, "r+");
+	while(PWM_ == NULL)
 	{
 		usleep(1);
-		fclose(PWM_);
 	}
+	fclose(PWM_);
 	delete[] Period_dir;
 }
 void PWM::run(){
