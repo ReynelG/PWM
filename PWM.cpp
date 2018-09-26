@@ -51,7 +51,7 @@ void PWM::run(){
 	}
 	if(PWM_ != -1)
 	{
-		write(PWM_, P, Period.length(),);
+		write(PWM_, P, Period.length());
 		close(PWM_);
 	}
 	delete[] Period_dir;	
