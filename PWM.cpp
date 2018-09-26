@@ -21,9 +21,9 @@ PWM::PWM(std::string p, std::string dc, std::string port, std::string ch):Period
 		std::strcpy (CH, Channel.c_str());
 		
 		int PWM_ = open(Export_dir,O_WRONLY);
-		if((PWM_ != -1)
+		if(PWM_ != -1)
 		{
-			int n =write(PWM_, CH, sizeof(char));
+			write(PWM_, CH, sizeof(char));
 			close(PWM_);
 		}
 		delete[] Export_dir;
@@ -56,8 +56,8 @@ void PWM::run(){
 	dir = "/sys/class/pwm/pwmchip"+Port+"/pwm-"+Port+":"+Channel+"/enable";
 	char * En_dir = new char [dir.length()+1];
 	std::strcpy (En_dir, dir.c_str());
-	int PWM_ = open(En_dir,O_WRONLY);
-	if((PWM_ != -1)
+	PWM_ = open(En_dir,O_WRONLY);
+	if(PWM_ != -1)
 	{
 		write(PWM_,"1", sizeof(char));
 		close(PWM_);
@@ -70,8 +70,8 @@ void PWM::run(){
 	std::strcpy (DC_dir, dir.c_str());
 	char * DC = new char [Duty_Cycle.length()+1];
 	std::strcpy (DC, Duty_Cycle.c_str());
-	int PWM_ = open(DC_dir,O_WRONLY);
-	if((PWM_ != -1)
+	PWM_ = open(DC_dir,O_WRONLY);
+	if(PWM_ != -1)
 	{
 		write(PWM_, DC, Duty_Cycle.length());
 		close(PWM_);
