@@ -7,6 +7,7 @@ PWM::PWM(std::string p, std::string dc, std::string port, std::string ch):Period
 	
 	FILE * PWM_ = NULL;
 	
+	// Export creates directories for chosen port and channel
 	std::string Export = "/sys/class/pwm/pwmchip"+Port+"/export"; 
 	char * Export_dir = new char [Export.length()+1];
 	std::strcpy (Export_dir, Export.c_str());
@@ -20,12 +21,13 @@ PWM::PWM(std::string p, std::string dc, std::string port, std::string ch):Period
 	delete[] Export_dir;
 	delete[] CH;
 	
+	//Checks if new directory exist.
 	std::string dir = "/sys/class/pwm/pwmchip"+Port+"/pwm-"+Port+":"+Channel+"/period";
 	char * Period_dir = new char [dir.length()+1];
 	std::strcpy (Period_dir, dir.c_str());	
-	PWM_ = fopen(Period_dir, "r+");
-	while(PWM_ == NULL)
+	while(PWM_ == NULL || PWM_ == 0)
 	{
+		PWM_ = fopen(Period_dir, "r+");
 		usleep(1);
 	}
 	fclose(PWM_);
