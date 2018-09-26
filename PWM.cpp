@@ -7,7 +7,7 @@ PWM::PWM(std::string p, std::string dc, std::string port, std::string ch):Period
 	
 	std::string Export = "/sys/class/pwm/pwmchip"+Port+"/export"; 
 	char * Export_dir = new char [Export.length()+1];
-	std::strcpy (Export_dir, Port.c_str());
+	std::strcpy (Export_dir, Export.c_str());
 	char * CH = new char[Channel.length()+1];
 	std::strcpy (CH, Channel.c_str());
 	if((PWM_ = fopen(Export_dir, "w")) != NULL)
