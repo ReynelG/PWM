@@ -19,7 +19,7 @@ class PWM {
 		std::string Port;						//PWM Port (3 available)
 		std::string Channel;						//PWM Channel (2 for every port)
 	public:
-		PWM(std::string, std::string, std::string, std::string);	//Constructor, creates the directories.
-		void run();							//Starts
+		PWM(std::string, std::string);	//Constructor, creates the directories.
+		void run(std::string, std::string);				//Receives Period and Duty Cycle
 	};
 #endif
